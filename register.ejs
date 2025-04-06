@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/styles/style.css"/>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p><%= head %></p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#" class="link active">Home</a></li>
+                    <li><a href="#" class="link">About</a></li>
+                    <li><a href="#" class="link">Help</a></li>
+                </ul>
+            </div>
+            <div class="nav-menu-btn">
+                <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+            </div>
+        </nav>
+        <section>
+            <div class="user_detail" id="detail">
+                <h1>Register</h1>
+                <div class="inputbox">
+                    <ion-icon name="user-outline"></ion-icon>
+                    <input type="text" id="name" name="name" form="myform" required>
+                    <div class="label">
+                        <i class="bx bx-user"></i>
+                        <label for="">Full Name</label>
+                    </div>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <input type="email" id="email" name="email" form="myform" required>
+                    <div class="label">
+                        <i class="bx bx-envelope"></i>
+                        <label for="">Email</label>
+                    </div>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" id="pass" name="pass" form="myform" required>
+                    <div class="label">
+                        <i class="bx bx-lock-alt"></i>
+                        <label for="">Password</label>
+                    </div>
+                </div>
+            <button onclick="validate()">Next</button>
+            <div class="register">
+                <p>Already have an account?&nbsp;<a href="/">Login</a></p>
+            </div>
+            </div>
+            <div class="user_role" id="role">
+            <form id="myform" action="/register" method="post" autocomplete="off">
+                <h1>Role</h1>
+                <div class="inputbox">
+                    <ion-icon name="user-outline"></ion-icon>
+                    <input type="tel" name="phone" required>
+                    <div class="label">
+                        <i class="bx bx-phone"></i>
+                        <label for="">Phone Number</label>
+                    </div>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="user-outline"></ion-icon>
+                    <input type="text" id="address" name="address" required>
+                    <div class="label">
+                        <i class='bx bx-current-location'></i>
+                        <label for="">Address</label>
+                    </div>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="mail-outline"></ion-icon>
+                     <select name="role" id="roleAdd" required>
+                        <option value="none" selected disabled>Select Role</option>
+                        <option value="customer">Customer</option>
+                        <option value="farmer">Farmer</option>
+                     </select>
+                    <div class="label">
+                        <i class="bx bx-user"></i>
+                        <label for="">Role</label>
+                    </div>
+                </div>
+                <button type="submit" id="submit" disabled>Register</button>
+                <div class="register">
+                    <a onclick="back_state()">Previous</a>
+                </div>
+            </form>
+            </div>
+        </section>
+    </div>
+    <script>
+   
+        function myMenuFunction() {
+         var i = document.getElementById("navMenu");
+     
+            if(i.className === "nav-menu") {
+                i.className += " responsive";
+            } else {
+                i.className = "nav-menu";
+            }
+        }
+
+        function validate(){
+            const email = document.getElementById("email").value.trim();
+            const name = document.getElementById("name").value.trim();
+            const pass = document.getElementById("pass").value.trim();
+            const btn = document.getElementById("submit");
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(emailRegex.test(email) && email!="" && pass!="" && name!=""){
+                next_state();
+                btn.disabled = false;
+            }
+        }
+
+        var x = document.getElementById("detail");
+        var y = document.getElementById("role");
+
+        function next_state() {
+            x.style.left = "-400px";
+            y.style.right = "25px";
+            x.style.opacity = 0;
+            y.style.opacity = 1;
+        }
+
+        function back_state() {
+            x.style.left = "25px";
+            y.style.right = "-400px";
+            x.style.opacity = 1;
+            y.style.opacity = 0;
+        }
+        
+        window.addEventListener('pageshow', (event) => {
+            if(event.persisted) {
+                document.getElementById('register').reset();
+            }
+        });
+     </script>
+</body>
+</html>

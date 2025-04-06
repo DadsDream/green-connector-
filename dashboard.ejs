@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <%- include('layers/sidebar') %>
+
+        <!-- Toggle Button -->
+        <button class="toggle-sidebar" id="toggleSidebar">☰</button>
+
+        <div class="main-content1">
+
+            <!-- <div class="message">Hello</div> -->
+
+            <!-- Main Content Area -->
+            <% if (board === 'home') { %>
+                <%- include('layers/home') %>
+            <% } else if (board == 'profile') { %>
+                <%- include('layers/profile') %>
+            <% } else if (board == 'photo') { %>
+                <%- include('layers/photo') %>
+            <% } else if (board == 'product') {%>
+                <%- include('layers/product') %>
+            <% } else if (board == 'addProduct') { %>
+                <%- include('layers/addProduct') %>
+            <% } else if (board === 'ownProduct') { %>
+                <%- include('layers/ownProduct') %>
+            <% } else if (board == 'orders') { %>
+                <%- include('layers/orders') %>
+            <% } else if (board == 'request') { %>
+                <%- include('layers/request') %>
+            <% } else if (board == 'equipment') { %>
+                <%- include('layers/equipment') %>
+            <% } else if (board == 'addEquip') { %>
+                <%- include('layers/addEquipment') %>
+            <% } else if (board == 'ownEquip') { %>
+                <%- include('layers/ownEquipment') %>
+            <% } %>
+        </div>
+    </div>
+    <script>
+        // JavaScript for Sidebar Toggle
+        document.getElementById("toggleSidebar").addEventListener("click", () => {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("open");
+        });
+    </script>
+</body>
+</html>
